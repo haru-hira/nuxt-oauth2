@@ -20,6 +20,9 @@
         >
           GitHub
         </a>
+        <a href="./logout" rel="noopener noreferrer" class="button--grey">
+          Logout
+        </a>
       </div>
     </div>
   </div>

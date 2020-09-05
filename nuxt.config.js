@@ -81,7 +81,8 @@ export default {
           token:
             'http://localhost:8080/auth/realms/test/protocol/openid-connect/token',
           logout:
-            'http://localhost:8080/auth/realms/test/protocol/openid-connect/logout',
+            'http://localhost:8080/auth/realms/test/protocol/openid-connect/logout?redirect_uri=' +
+            encodeURI('http://localhost:3000/login'),
         },
         responseType: 'id_token token',
         clientId: 'account',
