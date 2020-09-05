@@ -89,6 +89,7 @@ export default {
         scope: ['openid'],
       },
     },
+    localStorage: false,
   },
   router: {
     middleware: ['auth'],
