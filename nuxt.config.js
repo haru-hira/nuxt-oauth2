@@ -92,6 +92,6 @@ export default {
     localStorage: false,
   },
   router: {
-    middleware: ['auth'],
+    middleware: ['token-check', 'auth'],
   },
 }
