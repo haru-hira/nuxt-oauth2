@@ -47,10 +47,48 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+  ],
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {},
+  /*
+   ** Auth module configiration
+   */
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/logout',
+      callback: '/callback',
+      home: '/',
+    },
+    strategies: {
+      keycloak: {
+        _scheme: 'oauth2',
+        authorization_endpoint:
+          'http://localhost:8080/auth/realms/test/protocol/openid-connect/auth',
+        userinfo_endpoint: false,
+        access_type: 'offline',
+        access_token_endpoint:
+          'http://localhost:8080/auth/realms/test/protocol/openid-connect/token',
+        response_type: 'token',
+        token_type: 'Bearer',
+        token_key: 'access_token',
+        client_id: 'account',
+      },
+    },
+  },
+  router: {
+    middleware: ['auth'],
+  },
 }
