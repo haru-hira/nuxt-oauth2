@@ -50,7 +50,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth',
+    '@nuxtjs/auth-next',
   ],
   /*
    ** Build configuration
@@ -74,17 +74,18 @@ export default {
     },
     strategies: {
       keycloak: {
-        _scheme: 'oauth2',
-        authorization_endpoint:
-          'http://localhost:8080/auth/realms/test/protocol/openid-connect/auth',
-        userinfo_endpoint: false,
-        access_type: 'offline',
-        access_token_endpoint:
-          'http://localhost:8080/auth/realms/test/protocol/openid-connect/token',
-        response_type: 'token',
-        token_type: 'Bearer',
-        token_key: 'access_token',
-        client_id: 'account',
+        scheme: 'oauth2',
+        endpoints: {
+          authorization:
+            'http://localhost:8080/auth/realms/test/protocol/openid-connect/auth',
+          token:
+            'http://localhost:8080/auth/realms/test/protocol/openid-connect/token',
+          logout:
+            'http://localhost:8080/auth/realms/test/protocol/openid-connect/logout',
+        },
+        responseType: 'id_token token',
+        clientId: 'account',
+        scope: ['openid'],
       },
     },
   },
