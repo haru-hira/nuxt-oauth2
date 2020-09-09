@@ -3,7 +3,7 @@
     <div>
       <Logo />
       <h1 class="title">nuxt-oauth2</h1>
-      <h3>welcome, {{ userName }}</h3>
+      <h2>welcome, {{ userName }}</h2>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -34,15 +34,18 @@
 
 <script>
 import Vue from 'vue'
+import jwt_decode from 'jwt-decode'
 
 export default Vue.extend({
   data() {
     return {
-      userName: 'hoge',
+      userName: '',
     }
   },
   mounted() {
-    this.userName = this.$auth.$storage.getCookie('_token.keycloak')
+    const token = this.$auth.$storage.getCookie('_token.keycloak')
+    const decoded = jwt_decode(token)
+    this.userName = decoded.preferred_username
   },
 })
 </script>
