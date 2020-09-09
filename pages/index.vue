@@ -3,6 +3,7 @@
     <div>
       <Logo />
       <h1 class="title">nuxt-oauth2</h1>
+      <h3>welcome, {{ userName }}</h3>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -31,10 +32,19 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return {
+      userName: 'hoge',
+    }
+  },
+  mounted() {
+    this.userName = this.$auth.$storage.getCookie('_token.keycloak')
+  },
+})
 </script>
 
 <style>
