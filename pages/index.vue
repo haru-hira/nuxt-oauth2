@@ -34,7 +34,7 @@
 
 <script>
 import Vue from 'vue'
-import jwt_decode from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
 
 export default Vue.extend({
   data() {
@@ -44,7 +44,7 @@ export default Vue.extend({
   },
   mounted() {
     const token = this.$auth.$storage.getCookie('_token.keycloak')
-    const decoded = jwt_decode(token)
+    const decoded = jwtDecode(token)
     this.userName = decoded.preferred_username
   },
 })
